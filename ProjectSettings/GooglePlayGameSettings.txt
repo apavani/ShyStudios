@@ -1,0 +1,10 @@
+lastUpgrade=00935
+proj.pluginVersion=0.9.35
+proj.AppId=493325639761
+and.BundleId=com.ShyStudios.DumpIt
+proj.classDir=Assets
+proj.ConstantsClassName=GPGSIds
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--%0d%0aGoogle+Play+game+services+IDs.%0d%0aSave+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.%0d%0a--%3e%0d%0a%3cresources%3e%0d%0a++%3cstring+name%3d%22app_id%22%3e493325639761%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22package_name%22%3ecom.ShyStudios.DumpIt%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22achievement_level_1_complete%22%3eCgkI0cD_460OEAIQAg%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22achievement_level_2_completion%22%3eCgkI0cD_460OEAIQAw%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22achievement_welcome_to_the_game%22%3eCgkI0cD_460OEAIQBA%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22achievement_achievement_3_achieved%22%3eCgkI0cD_460OEAIQBQ%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22achievement_achievement_4_unlocked%22%3eCgkI0cD_460OEAIQBg%3c%2fstring%3e%0d%0a%3c%2fresources%3e%0d%0a
+and.ClientId=493325639761-n6ohmksnat16gr7gb20bh69eejomr2h9.apps.googleusercontent.com
+proj.requireGPlus=false
+android.SetupDone=true
