@@ -8,10 +8,26 @@ public class SignInManager : MonoBehaviour {
     // authenticate user:
     void Start()
     {
-        Social.localUser.Authenticate((bool success) =>
+        PlayGamesPlatform.DebugLogEnabled = true;
+        PlayGamesPlatform.Activate();
+        if (!Social.localUser.authenticated)
         {
-            Debug.Log("Login Successful");
+            Social.localUser.Authenticate((bool success) =>
+            {
+            //standby login screen to be implemented while GPGS is signing in
+            if (success)
+                {
+                    Debug.Log("Login Successful");
+                    string userInfo = "Username: " + Social.localUser.userName +
+                    "\nUser ID: " + Social.localUser.id +
+                    "\nIsUnderage: " + Social.localUser.underage;
+                    Debug.Log(userInfo);
+                }
+                else
+                    Debug.Log("Login Failed");
             // handle success or failure
-        });
+            });
+        }
     }
+    
 }
