@@ -24,7 +24,7 @@ public class SignInManager : MonoBehaviour {
                     Debug.Log(userInfo);
                 }
                 else
-                    Debug.Log("Login Failed");
+                    Debug.Log("Login Failure");
             // handle success or failure
             });
         }
