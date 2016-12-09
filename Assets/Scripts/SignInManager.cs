@@ -18,7 +18,6 @@ public class SignInManager : MonoBehaviour {
        .WithInvitationDelegate(invitationWhenClosed)
        // require access to a player's Google+ social graph (usually not needed)
        //.RequireGooglePlus()
-       //
        .Build();
 
         PlayGamesPlatform.InitializeInstance(config);
