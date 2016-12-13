@@ -15,9 +15,9 @@ public class CharacterMover : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Input.acceleration.x < 0)
-        transform.position = new Vector3(Mathf.Min(MapBounds.maxX - halfSizeX, transform.position.x+TCKTilt.sidewaysAxis*Time.deltaTime)   , transform.position.y, transform.position.z);
-        else
-        transform.position = new Vector3(Mathf.Max(MapBounds.minX, transform.position.x-TCKTilt.sidewaysAxis*Time.deltaTime), transform.position.y, transform.position.z);
+        if (Input.acceleration.x < -0.15)
+        transform.position = new Vector3(Mathf.Max(MapBounds.minX + halfSizeX, transform.position.x+TCKTilt.sidewaysAxis*Time.deltaTime)   , transform.position.y, transform.position.z);
+        else if(Input.acceleration.x > 0.15)
+        transform.position = new Vector3(Mathf.Min(MapBounds.maxX - halfSizeX, transform.position.x-TCKTilt.sidewaysAxis*Time.deltaTime), transform.position.y, transform.position.z);
     }
 }

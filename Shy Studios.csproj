@@ -261,10 +261,11 @@
     <Compile Include="Assets\GooglePlayGames\Platforms\PlayGamesClientFactory.cs" />
     <Compile Include="Assets\GooglePlayGames\Platforms\TokenClient.cs" />
     <Compile Include="Assets\GooglePlayGames\PluginVersion.cs" />
-    <Compile Include="Assets\MapBounds.cs" />
     <Compile Include="Assets\Scripts\AchievementManager.cs" />
     <Compile Include="Assets\Scripts\CharacterMover.cs" />
     <Compile Include="Assets\Scripts\GPGSIds.cs" />
+    <Compile Include="Assets\Scripts\GameSettings.cs" />
+    <Compile Include="Assets\Scripts\MapBounds.cs" />
     <Compile Include="Assets\Scripts\MultiPlayerHandler.cs" />
     <Compile Include="Assets\Scripts\MultiplayerListenerClass.cs" />
     <Compile Include="Assets\Scripts\SignInManager.cs" />
