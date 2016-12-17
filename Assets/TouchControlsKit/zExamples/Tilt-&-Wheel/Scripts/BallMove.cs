@@ -20,8 +20,8 @@ public class BallMove : MonoBehaviour
     // Update
     void Update()
     {
-        tiltVector.x = TCKTilt.forwardAxis + TCKInput.GetAxis( "dPad", AxisType.X );
-        tiltVector.z = -TCKTilt.sidewaysAxis + TCKInput.GetAxis( "dPad", AxisType.Y );
+        //tiltVector.x = TCKTilt.forwardAxis + TCKInput.GetAxis( "dPad", AxisType.X );
+        //tiltVector.z = -TCKTilt.sidewaysAxis + TCKInput.GetAxis( "dPad", AxisType.Y );
         cameraTransform.position = new Vector3( m_Transform.position.x, cameraTransform.position.y, m_Transform.position.z - 5f );
     }
 

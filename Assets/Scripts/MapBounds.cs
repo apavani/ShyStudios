@@ -11,9 +11,6 @@ public class MapBounds : MonoBehaviour {
      
      void Update()
     {
-        float vertExtent = Camera.main.orthographicSize;
-        float horzExtent = vertExtent * Screen.width / Screen.height;
-
         // Calculations assume map is position at the origin
         Vector3 leftBottomBounds = Camera.main.ScreenToWorldPoint(new Vector3(0, 0));
         Vector3 rightTopBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height));
