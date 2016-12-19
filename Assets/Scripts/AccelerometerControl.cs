@@ -14,9 +14,9 @@ namespace TouchControls
         [Range( -50f, 50f )]
         public float centreAngleOffset = 0f;
 
-        public float centerRange;
-
-
+        public float centerRangeX;
+        public float centerRangeY;
+        
         private float forwardAxis;
         private float sidewaysAxis;
         private bool jetPressed;
@@ -24,7 +24,8 @@ namespace TouchControls
         private NavigationControlArgs nArgs;
         public event EventHandler<NavigationControlArgs>LeftControl;
         public event EventHandler<NavigationControlArgs>RightControl;
-        public event EventHandler<NavigationControlArgs>Levitate;
+        public event EventHandler<NavigationControlArgs> LevitateUp;
+        public event EventHandler<NavigationControlArgs> LevitateDown;
 
         void Start()
         {
@@ -33,69 +34,79 @@ namespace TouchControls
         // Update
         void Update()
         {
-            if( Input.acceleration != Vector3.zero )
-            {
-                float forwardAngle = Mathf.Atan2( Input.acceleration.x, -Input.acceleration.y ) * Mathf.Rad2Deg + centreAngleOffset;
-                float sidewaysAngle = Mathf.Atan2( Input.acceleration.z, -Input.acceleration.y ) * Mathf.Rad2Deg + centreAngleOffset;
-                forwardAxis = ( Mathf.InverseLerp( -fullTiltAngle, fullTiltAngle, forwardAngle ) * 2f - 1f ) * sensitivity;
-                sidewaysAxis = ( Mathf.InverseLerp( -fullTiltAngle, fullTiltAngle, sidewaysAngle ) * 2f - 1f ) * sensitivity;
-            }
-            else
-            {
-                forwardAxis = 0f;
-                sidewaysAxis = 0f;
-            }
-
             //Return Values to the subscribing class
-            if (Input.acceleration.x < -centerRange/2)
+            if (Input.acceleration.x < -centerRangeX/2)
             {
                 this._goLeft();
             }
-            else if(Input.acceleration.x > centerRange / 2)
+            else if(Input.acceleration.x >= centerRangeX / 2)
             {
                 this._goRight();
             }
 
+            if (Input.acceleration.y < -centerRangeY / 2)
+            {
+                this._goDown();
+            }
+            else if (Input.acceleration.y >= centerRangeY / 2)
+            {
+                this._goUp();
+            }
+            /*
             if(jetPressed)
             {
-                this.GoUp();
+                this._goUp();
             }
             else
             {
-                this.GoDown();
+                this._goDown();
             }
+            */
 
         }
 
         private void _goLeft()
         {
-            nArgs.value = sidewaysAxis;
+            nArgs.movementVector = Input.acceleration;
             if(LeftControl!=null)
-            LeftControl(this,nArgs);
+                LeftControl(this,nArgs);
         }
 
         private void _goRight()
         {
-            nArgs.value = sidewaysAxis;
+            nArgs.movementVector = Input.acceleration;
             if (RightControl != null)
                 RightControl(this, nArgs);
         }
 
         //ManagedByUI
-        private void GoUp()
+        private void _goUp()
         {
-            nArgs.levitate = true;
-            if (Levitate != null)
-                Levitate(this, nArgs);
+            nArgs.movementVector = Input.acceleration;
+            if (LevitateUp != null)
+                LevitateUp(this, nArgs);
         }
 
+
+        private void _goDown()
+        {
+            nArgs.movementVector = Input.acceleration;
+            if (LevitateDown != null)
+                LevitateDown(this, nArgs);
+        }
+
+        private void GoUp()
+        {
+            if (LevitateUp != null)
+                LevitateUp(this, null);
+        }
 
         private void GoDown()
         {
-            nArgs.levitate = false;
-            if (Levitate != null)
-                Levitate(this, nArgs);
+            if (LevitateDown != null)
+                LevitateDown(this, null);
         }
+
         public void JetButtonPressedDown()
         {
             jetPressed = true;
@@ -105,13 +116,10 @@ namespace TouchControls
         {
             jetPressed = false;
         }
-
-
     }
 }
 
 public class NavigationControlArgs : EventArgs
 {
-    public float value;
-    public bool levitate;
+    public Vector3 movementVector;
 }
