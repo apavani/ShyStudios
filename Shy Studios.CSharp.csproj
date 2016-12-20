@@ -246,11 +246,38 @@
     <Compile Include="Assets\GooglePlayGames\Platforms\PlayGamesClientFactory.cs" />
     <Compile Include="Assets\GooglePlayGames\Platforms\TokenClient.cs" />
     <Compile Include="Assets\GooglePlayGames\PluginVersion.cs" />
+    <Compile Include="Assets\Scripts\AccelerometerControl.cs" />
     <Compile Include="Assets\Scripts\AchievementManager.cs" />
+    <Compile Include="Assets\Scripts\CharacterMover.cs" />
     <Compile Include="Assets\Scripts\GPGSIds.cs" />
+    <Compile Include="Assets\Scripts\GameSettings.cs" />
+    <Compile Include="Assets\Scripts\IPlayerController.cs" />
+    <Compile Include="Assets\Scripts\MapBounds.cs" />
     <Compile Include="Assets\Scripts\MultiPlayerHandler.cs" />
     <Compile Include="Assets\Scripts\MultiplayerListenerClass.cs" />
     <Compile Include="Assets\Scripts\SignInManager.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\BaseData\AxesBasedController.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\BaseData\Axis.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\BaseData\ControllerBase.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\BaseData\Delegates.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\BaseData\Enums.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\TCKButton.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\TCKDPad.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\TCKDPadArrow.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\TCKJoystick.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\TCKSteeringWheel.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\TCKTouchpad.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\TCKInput.cs" />
+    <Compile Include="Assets\TouchControlsKit\Scripts\Utils\GuiCamera.cs" />
+    <Compile Include="Assets\TouchControlsKit\zExamples\!mainMenu\LevelLoader.cs" />
+    <Compile Include="Assets\TouchControlsKit\zExamples\2DPlatformer\Prefabs\rocketLifetime.cs" />
+    <Compile Include="Assets\TouchControlsKit\zExamples\2DPlatformer\Scripts\TwoDCameraFollow.cs" />
+    <Compile Include="Assets\TouchControlsKit\zExamples\2DPlatformer\Scripts\TwoDGun.cs" />
+    <Compile Include="Assets\TouchControlsKit\zExamples\2DPlatformer\Scripts\TwoDPlayerControl.cs" />
+    <Compile Include="Assets\TouchControlsKit\zExamples\API_Demo.cs" />
+    <Compile Include="Assets\TouchControlsKit\zExamples\FirstPerson\Scripts\FirstPersonExample.cs" />
+    <Compile Include="Assets\TouchControlsKit\zExamples\Tilt-&amp;-Wheel\Scripts\BallMove.cs" />
+    <Compile Include="Assets\TouchControlsKit\zExamples\Tilt-&amp;-Wheel\Scripts\CarMove.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\MultiKeyDictionary.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\Reporter.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\ReporterGUI.cs" />
@@ -265,6 +292,7 @@
     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
     <None Include="Assets\Plugins\Android\MainLibProj\AndroidManifest.xml" />
     <None Include="Assets\StreamingAssets\build_info.txt" />
+    <None Include="Assets\TouchControlsKit\zExamples\ReadMeToo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
