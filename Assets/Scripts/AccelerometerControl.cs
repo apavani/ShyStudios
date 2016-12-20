@@ -118,8 +118,3 @@ namespace TouchControls
         }
     }
 }
-
-public class NavigationControlArgs : EventArgs
-{
-    public Vector3 movementVector;
-}

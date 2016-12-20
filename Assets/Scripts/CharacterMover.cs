@@ -20,7 +20,7 @@ public class CharacterMover : MonoBehaviour {
 	void OnEnable () {
         halfSizeX = gameObject.GetComponent<Renderer>().bounds.extents.x/2;
         halfSizeY = gameObject.GetComponent<Renderer>().bounds.extents.y / 2;
-        _control = GameObject.Find("Controller").GetComponent<AccelerometerControl>();
+        _control = GameObject.Find("Controller").GetComponent<ButtonController>();
         _control.LeftControl += new EventHandler<NavigationControlArgs>(GoLeft);
         _control.RightControl += new EventHandler<NavigationControlArgs>(GoRight);
         _control.LevitateUp += new EventHandler<NavigationControlArgs>(GoUp);
