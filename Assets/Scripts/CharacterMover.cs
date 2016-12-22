@@ -7,10 +7,18 @@ public enum VelocityType
     constant,
     accelerating
 }
+
+public enum ControllerType
+{
+    accelerometer,
+    joystick,
+    button
+}
 public class CharacterMover : MonoBehaviour {
-    
-    public float movementSpeed;
+
+    public ControllerType controllerType;
     public VelocityType velocityType;
+    public float movementSpeed;
     private float halfSizeX;
     private float halfSizeY;
     private CharacterController _controller;
@@ -20,7 +28,27 @@ public class CharacterMover : MonoBehaviour {
 	void OnEnable () {
         halfSizeX = gameObject.GetComponent<Renderer>().bounds.extents.x/2;
         halfSizeY = gameObject.GetComponent<Renderer>().bounds.extents.y / 2;
-        _control = GameObject.Find("Controller").GetComponent<ButtonController>();
+        switch(controllerType)
+        {
+            case(ControllerType.accelerometer):
+            {
+                    _control = GameObject.Find("Controller").GetComponent<AccelerometerControl>();
+                    break;
+            }
+            case (ControllerType.joystick):
+            {
+                    _control = GameObject.Find("Controller").GetComponent<JoyStickController>();
+                    break;
+            }
+            case (ControllerType.button):
+            {
+                    _control = GameObject.Find("Controller").GetComponent<ButtonController>();
+                    break;
+            }
+            default:
+                break;
+        }
+
         _control.LeftControl += new EventHandler<NavigationControlArgs>(GoLeft);
         _control.RightControl += new EventHandler<NavigationControlArgs>(GoRight);
         _control.LevitateUp += new EventHandler<NavigationControlArgs>(GoUp);
