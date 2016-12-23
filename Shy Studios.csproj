@@ -269,6 +269,7 @@
     <Compile Include="Assets\Scripts\GameSettings.cs" />
     <Compile Include="Assets\Scripts\IPlayerController.cs" />
     <Compile Include="Assets\Scripts\JoyStickController.cs" />
+    <Compile Include="Assets\Scripts\LootManager.cs" />
     <Compile Include="Assets\Scripts\MapBounds.cs" />
     <Compile Include="Assets\Scripts\MultiPlayerHandler.cs" />
     <Compile Include="Assets\Scripts\MultiplayerListenerClass.cs" />
