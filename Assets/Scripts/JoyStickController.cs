@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TouchControlsKit;
 public class JoyStickController : MonoBehaviour, IPlayerController {
+    public bool gravity;
     public event EventHandler<NavigationControlArgs> LeftControl;
     public event EventHandler<NavigationControlArgs> LevitateDown;
     public event EventHandler<NavigationControlArgs> LevitateUp;
@@ -19,7 +20,7 @@ public class JoyStickController : MonoBehaviour, IPlayerController {
         //TCKInput.BindAxes("leftJoystick", actionHandler, actionPhase);
         moveX = TCKInput.GetAxis("leftJoystick", "Horizontal");
         moveY = TCKInput.GetAxis("leftJoystick", "Vertical");
-        if(moveX>0)
+        if(moveY>0)
         {
             this.GoUp();
         }
@@ -28,7 +29,7 @@ public class JoyStickController : MonoBehaviour, IPlayerController {
             this.GoDown();
         }
 
-        if(moveY>0)
+        if(moveX>0)
         {
             this.GoLeft();
         }
@@ -36,9 +37,13 @@ public class JoyStickController : MonoBehaviour, IPlayerController {
         {
             this.GoRight();
         }
+
+        Debug.Log(moveX);
+        Debug.Log(moveY);
+
     }
-	
-	void GoUp () {
+
+    void GoUp () {
         nArgs.movementVector = new Vector3(moveX, moveY);
         if(LevitateUp!=null)
         {
@@ -48,7 +53,11 @@ public class JoyStickController : MonoBehaviour, IPlayerController {
 
     void GoDown()
     {
+        if(gravity)
+        nArgs.movementVector = new Vector3(moveX, -0.75f);
+        else
         nArgs.movementVector = new Vector3(moveX, moveY);
+
         if (LevitateDown != null)
         {
             LevitateDown(this, nArgs);
