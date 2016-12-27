@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using GooglePlayGames.BasicApi.Multiplayer;
+using GooglePlayGames;
 
 public class MultiplayerListenerClass : RealTimeMultiplayerListener {
+    private bool showingWaitingRoom = false;
+
     public void OnLeftRoom()
     {
         Debug.Log("Room Left");
@@ -34,7 +37,11 @@ public class MultiplayerListenerClass : RealTimeMultiplayerListener {
 
     public void OnRoomSetupProgress(float percent)
     {
-        Debug.Log("Room Setup Progress : "+ percent);
+        if (!showingWaitingRoom)
+        {
+            showingWaitingRoom = true;
+            PlayGamesPlatform.Instance.RealTime.ShowWaitingRoomUI();
+        }
     }
 
 }

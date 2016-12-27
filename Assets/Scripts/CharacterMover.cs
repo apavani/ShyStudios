@@ -82,6 +82,7 @@ public class CharacterMover : MonoBehaviour {
         else if (velocityType == VelocityType.accelerating)
             _controller.Move(movementSpeed * new Vector3(e.movementVector.x, e.movementVector.y));
 
+        Debug.Log(e.movementVector.y);
         this._keepWithinBounds();
     }
 
