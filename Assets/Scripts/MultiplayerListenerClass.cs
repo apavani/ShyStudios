@@ -1,10 +1,23 @@
 ﻿using UnityEngine;
+using System;
 using GooglePlayGames.BasicApi.Multiplayer;
-using GooglePlayGames;
 
 public class MultiplayerListenerClass : RealTimeMultiplayerListener {
-    private bool showingWaitingRoom = false;
 
+    private static MultiplayerListenerClass _instance;
+    public static MultiplayerListenerClass Instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = new MultiplayerListenerClass();
+            return _instance;
+        }
+    }
+    public event EventHandler<PlayerData> PlayerEvents;
+    public event EventHandler<EventArgs> RoomConnected;
+
+    private PlayerData _playerData = new PlayerData();
     public void OnLeftRoom()
     {
         Debug.Log("Room Left");
@@ -27,21 +40,38 @@ public class MultiplayerListenerClass : RealTimeMultiplayerListener {
 
     public void OnRealTimeMessageReceived(bool isReliable, string senderId, byte[] data)
     {
-        Debug.Log("Message Received from sender "+senderId+" : " + System.Text.Encoding.Default.GetString(data));
+        _playerData.isReliable = isReliable;
+        _playerData.senderID = senderId;
+        _playerData.data = data;
+
+        if (PlayerEvents != null)
+            PlayerEvents(this, _playerData);
     }
 
     public void OnRoomConnected(bool success)
     {
         Debug.Log("Room Connected");
+        //Instantiate player
+        if (RoomConnected != null)
+            RoomConnected(this, EventArgs.Empty);
     }
 
     public void OnRoomSetupProgress(float percent)
     {
-        if (!showingWaitingRoom)
+        if (percent <= 20)
         {
-            showingWaitingRoom = true;
-            PlayGamesPlatform.Instance.RealTime.ShowWaitingRoomUI();
+            Debug.Log("Waiting for the other player to connect");
+        }
+        else {
+            Debug.Log("Room Setup in progress: " + percent + "%");
         }
     }
 
+}
+
+public class PlayerData:EventArgs
+{
+    public bool isReliable { get; set; }
+    public string senderID { get; set; }
+    public byte[] data { get; set; }
 }

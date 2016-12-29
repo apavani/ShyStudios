@@ -30,13 +30,22 @@ public class GameplayMessageCenter {
 
     public void SendPlayerPositionData(Vector2 positionVector)
     {
-        //message size will be: message type(1 byte) + Vector2 Position (8 bytes)
+        if (!PlayGamesPlatform.Instance.localUser.authenticated)
+            return;
+        if (PlayGamesPlatform.Instance.RealTime.GetConnectedParticipants().Count < 2)
+            return;
+            //message size will be: message type(1 byte) + Vector2 Position (8 bytes)
         positionMessage.Clear();
         positionMessage.Add((byte)'P'); // P stands for Position Type message
         positionMessage.AddRange(BitConverter.GetBytes(positionVector.x));
         positionMessage.AddRange(BitConverter.GetBytes(positionVector.y));
         byte[] messageToSend = positionMessage.ToArray();
         PlayGamesPlatform.Instance.RealTime.SendMessageToAll(false, messageToSend); //sending unreliable message
+    }
+
+    public void ReceivePlayerPositionData(byte[] data)
+    {
+
     }
 
     public void SendGrab(byte gemID)

@@ -59,40 +59,19 @@ public class CharacterMover : MonoBehaviour {
 
 
     private void GoLeft(object sender, NavigationControlArgs e){
-        if(velocityType==VelocityType.constant)
-            _controller.Move(movementSpeed * Time.deltaTime * new Vector3(e.movementVector.x, e.movementVector.y).normalized);
-        else if(velocityType==VelocityType.accelerating)
-            _controller.Move(movementSpeed * new Vector3(e.movementVector.x, e.movementVector.y));
-
-        this._keepWithinBounds();
+        this._updatePosition(e);
     }
 
     private void GoRight(object sender, NavigationControlArgs e){
-        if (velocityType == VelocityType.constant)
-            _controller.Move(movementSpeed * Time.deltaTime * new Vector3(e.movementVector.x, e.movementVector.y).normalized);
-        else if (velocityType == VelocityType.accelerating)
-            _controller.Move(movementSpeed * new Vector3(e.movementVector.x, e.movementVector.y));
-
-        this._keepWithinBounds();
+        this._updatePosition(e);
     }
 
     private void GoUp(object sender, NavigationControlArgs e) {
-        if (velocityType == VelocityType.constant)
-            _controller.Move(movementSpeed * Time.deltaTime * new Vector3(e.movementVector.x, e.movementVector.y).normalized);
-        else if (velocityType == VelocityType.accelerating)
-            _controller.Move(movementSpeed * new Vector3(e.movementVector.x, e.movementVector.y));
-
-        Debug.Log(e.movementVector.y);
-        this._keepWithinBounds();
+        this._updatePosition(e);
     }
 
     private void GoDown(object sender, NavigationControlArgs e){
-        if (velocityType == VelocityType.constant)
-            _controller.Move(movementSpeed * Time.deltaTime * new Vector3(e.movementVector.x, e.movementVector.y).normalized);
-        else if (velocityType == VelocityType.accelerating)
-            _controller.Move(movementSpeed * new Vector3(e.movementVector.x, e.movementVector.y));
-
-        this._keepWithinBounds();
+        this._updatePosition(e);
     }
 
     private void _keepWithinBounds()
@@ -117,4 +96,25 @@ public class CharacterMover : MonoBehaviour {
             transform.position = new Vector3(transform.position.x, MapBounds.minY + halfSizeY);
         }
     }
+
+    private void _updatePosition(NavigationControlArgs e)
+    {
+        if (velocityType == VelocityType.constant)
+        {
+            _controller.Move(movementSpeed * Time.deltaTime * e.movementVector.normalized);
+        }
+        else if (velocityType == VelocityType.accelerating)
+        {
+            _controller.Move(movementSpeed * e.movementVector);
+        }
+        this._keepWithinBounds();
+        GameplayMessageCenter.Instance.SendPlayerPositionData(transform.position);
+
+    }
+        void OnDisable(){
+            _control.LeftControl -= new EventHandler<NavigationControlArgs>(GoLeft);
+            _control.RightControl -= new EventHandler<NavigationControlArgs>(GoRight);
+            _control.LevitateUp -= new EventHandler<NavigationControlArgs>(GoUp);
+            _control.LevitateDown -= new EventHandler<NavigationControlArgs>(GoDown);
+        }
 }

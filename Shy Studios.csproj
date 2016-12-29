@@ -274,6 +274,8 @@
     <Compile Include="Assets\Scripts\MapBounds.cs" />
     <Compile Include="Assets\Scripts\MultiPlayerHandler.cs" />
     <Compile Include="Assets\Scripts\MultiplayerListenerClass.cs" />
+    <Compile Include="Assets\Scripts\PeerCharacterManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerDataHandler.cs" />
     <Compile Include="Assets\Scripts\SignInManager.cs" />
     <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\BaseData\AxesBasedController.cs" />
     <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\BaseData\Axis.cs" />

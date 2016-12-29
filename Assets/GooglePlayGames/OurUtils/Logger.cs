@@ -53,6 +53,7 @@ namespace GooglePlayGames.OurUtils
 
         public static void d(string msg)
         {
+            return;
             if (debugLogEnabled)
             {
                 PlayGamesHelperObject.RunOnGameThread(()=>

@@ -7,7 +7,7 @@ using GooglePlayGames.BasicApi.Multiplayer;
 
 public class SignInManager : MonoBehaviour {
     // authenticate user:
-    void Start()
+    void OnEnable()
     {
         InvitationReceivedDelegate invitationWhenClosed = ReceiveInvitationWhenAppClosed;
 
@@ -45,15 +45,23 @@ public class SignInManager : MonoBehaviour {
                 if (success)
                 {
                     Debug.Log("Login Successful");
-                    string userInfo = "Username: " + Social.localUser.userName +
-                    "\nUser ID: " + Social.localUser.id +
-                    "\nIsUnderage: " + Social.localUser.underage;
+                    string userInfo = "Username: " + PlayGamesPlatform.Instance.localUser.userName +
+                    "\nUser ID: " + PlayGamesPlatform.Instance.localUser.id +
+                    "\nIsUnderage: " + PlayGamesPlatform.Instance.localUser.underage;
                     Debug.Log(userInfo);
+
+                    MultiPlayerHandler.Instance.CreateMultiplayerGame();
+                    
                 }
                 else
                     Debug.Log("Login Failed");
                 // handle success or failure
             });
         }
+    }
+
+    void OnDisable()
+    {
+
     }
 }
