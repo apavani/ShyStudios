@@ -14,8 +14,8 @@ namespace TouchControls
         [Range( -50f, 50f )]
         public float centreAngleOffset = 0f;
 
-        public float centerOffsetX;
-        public float centerOffsetY;
+        public float centerRangeX;
+        public float centerRangeY;
         
         private float forwardAxis;
         private float sidewaysAxis;
@@ -35,20 +35,20 @@ namespace TouchControls
         void Update()
         {
             //Return Values to the subscribing class
-            if (Input.acceleration.x < centerOffsetX)
+            if (Input.acceleration.x < -centerRangeX/2)
             {
                 this._goLeft();
             }
-            else if(Input.acceleration.x >= centerOffsetX)
+            else if(Input.acceleration.x >= centerRangeX / 2)
             {
                 this._goRight();
             }
 
-            if (Input.acceleration.y < centerOffsetY && Input.acceleration.y > -0.99f + Mathf.Max(0,centerOffsetY))
+            if (Input.acceleration.y < -centerRangeY / 2)
             {
                 this._goDown();
             }
-            else if (Input.acceleration.y >= centerOffsetY && Input.acceleration.y < 0.99f - Mathf.Min(0,centerOffsetY))
+            else if (Input.acceleration.y >= centerRangeY / 2)
             {
                 this._goUp();
             }
@@ -67,14 +67,14 @@ namespace TouchControls
 
         private void _goLeft()
         {
-            nArgs.movementVector = new Vector3(Input.acceleration.x, Input.acceleration.y - centerOffsetY);
-            if (LeftControl!=null)
+            nArgs.movementVector = Input.acceleration;
+            if(LeftControl!=null)
                 LeftControl(this,nArgs);
         }
 
         private void _goRight()
         {
-            nArgs.movementVector = new Vector3(Input.acceleration.x, Input.acceleration.y - centerOffsetY);
+            nArgs.movementVector = Input.acceleration;
             if (RightControl != null)
                 RightControl(this, nArgs);
         }
@@ -82,7 +82,7 @@ namespace TouchControls
         //ManagedByUI
         private void _goUp()
         {
-            nArgs.movementVector = new Vector3(Input.acceleration.x, Input.acceleration.y-centerOffsetY);
+            nArgs.movementVector = Input.acceleration;
             if (LevitateUp != null)
                 LevitateUp(this, nArgs);
         }
@@ -90,7 +90,7 @@ namespace TouchControls
 
         private void _goDown()
         {
-            nArgs.movementVector = new Vector3(Input.acceleration.x, Input.acceleration.y-centerOffsetY);
+            nArgs.movementVector = Input.acceleration;
             if (LevitateDown != null)
                 LevitateDown(this, nArgs);
         }
