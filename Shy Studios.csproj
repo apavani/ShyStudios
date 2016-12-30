@@ -267,6 +267,7 @@
     <Compile Include="Assets\Scripts\CharacterMover.cs" />
     <Compile Include="Assets\Scripts\GPGSIds.cs" />
     <Compile Include="Assets\Scripts\GameSettings.cs" />
+    <Compile Include="Assets\Scripts\GameplayMessageCenter.cs" />
     <Compile Include="Assets\Scripts\IPlayerController.cs" />
     <Compile Include="Assets\Scripts\JoyStickController.cs" />
     <Compile Include="Assets\Scripts\LootManager.cs" />
@@ -276,6 +277,7 @@
     <Compile Include="Assets\Scripts\PeerCharacterManager.cs" />
     <Compile Include="Assets\Scripts\PlayerDataHandler.cs" />
     <Compile Include="Assets\Scripts\SignInManager.cs" />
+    <Compile Include="Assets\Scripts\ViewportHandler.cs" />
     <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\BaseData\AxesBasedController.cs" />
     <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\BaseData\Axis.cs" />
     <Compile Include="Assets\TouchControlsKit\Scripts\Controllers\BaseData\ControllerBase.cs" />

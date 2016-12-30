@@ -7,6 +7,13 @@ public class PeerCharacterManager : MonoBehaviour {
 
     private char messageType;
     private float posX, posY;
+    private CharacterController _controller;
+    private Vector3 targetPosition, movDiff, movDir;
+
+    void OnEnable()
+    {
+        this._controller = GetComponent<CharacterController>();
+    }
 
     public void ProcessMessage(byte[]data)
     {
@@ -46,6 +53,19 @@ public class PeerCharacterManager : MonoBehaviour {
     {
         posX = System.BitConverter.ToSingle(data, 1);
         posY = System.BitConverter.ToSingle(data, 5);
-        transform.position = new Vector3(posX, posY);
+        targetPosition = new Vector3(posX, posY);
+        if (targetPosition == transform.position)
+            return;
+
+        movDiff = targetPosition - transform.position;
+        movDir = movDiff.normalized * 15f * Time.deltaTime;
+        if (movDir.sqrMagnitude < movDiff.sqrMagnitude)
+        {
+            _controller.Move(movDir);
+        }
+        else
+        {
+            _controller.Move(movDiff);
+        }
     }
 }
