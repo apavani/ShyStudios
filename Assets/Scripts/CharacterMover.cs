@@ -101,11 +101,11 @@ public class CharacterMover : MonoBehaviour {
     {
         if (velocityType == VelocityType.constant)
         {
-            _controller.Move(movementSpeed * Time.deltaTime * e.movementVector.normalized);
+            _controller.Move(movementSpeed * Time.deltaTime * new Vector3(e.movementVector.x, e.movementVector.y).normalized);
         }
         else if (velocityType == VelocityType.accelerating)
         {
-            _controller.Move(movementSpeed * e.movementVector);
+            _controller.Move(movementSpeed * new Vector3(e.movementVector.x, e.movementVector.y));
         }
         this._keepWithinBounds();
         GameplayMessageCenter.Instance.SendPlayerPositionData(transform.position);
