@@ -12,24 +12,32 @@ public class LootManager : MonoBehaviour {
     {
         gemsInLoot = new List<GameObject>();
     }
-	// Use this for initialization
-	void OnTriggerEnter (Collider other) {
-		if(other.tag=="Gem" && gemsHolding<maxGemCapacity)
+    // Use this for initialization
+    void OnTriggerEnter(Collider other) {
+        if (other.tag == "Gem" && gemsHolding < maxGemCapacity && other.transform.parent != null)
         {
             gemsHolding++;
-            other.transform.localScale = new Vector3(0.25f,0.25f,0.25f);
+            other.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
             other.transform.parent = transform;
             other.transform.localPosition = new Vector3(0, -1.5f, 0);
             gemsInLoot.Add(other.gameObject);
         }
-
-        else if(other.tag=="TreasureChest" && gemsHolding>0)
+        else if (other.tag == "TreasureChest" && gemsHolding > 0)
         {
             gemsHolding--;
-            foreach(GameObject go in gemsInLoot)
+            foreach (GameObject go in gemsInLoot)
             {
                 Destroy(go);
             }
+        }
+        else if (other.tag == "Player" && gemsHolding > 0)
+        {
+            foreach(GameObject gem in gemsInLoot)
+            {
+                gem.GetComponent<GemManager>().EvaporateToPosition();
+            }
+            gemsInLoot.Clear();
+            gemsHolding = 0;
         }
 	}
 }
